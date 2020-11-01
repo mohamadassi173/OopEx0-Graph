@@ -6,7 +6,7 @@ import java.util.Collection;
 public class NodeData implements node_data {
 	
 	private Collection<node_data> NInodes;
-	static int id=0;
+	private static int id=0;
 	private int key;
 	private String info = "";
 	private int tag; // for algorithms
@@ -20,8 +20,8 @@ public class NodeData implements node_data {
 	 */
 	public NodeData() {
 		this.NInodes = new ArrayList<node_data>();
-		key=id;
-		NodeData.id++;
+		key=getId();
+		NodeData.setId(NodeData.getId() + 1);
 	}
 	/**
 	 * @param key - the Node number
@@ -63,7 +63,7 @@ public class NodeData implements node_data {
 
 	@Override
 	public Collection<node_data> getNi() {
-		if(NInodes.isEmpty()) {
+		if(NInodes.isEmpty()) { // check if the list is empty
 			NInodes = new ArrayList<node_data>();
 		}
 		return NInodes;
@@ -71,7 +71,7 @@ public class NodeData implements node_data {
 
 	@Override
 	public boolean hasNi(int key) {
-		for(node_data n1 : NInodes) {
+		for(node_data n1 : NInodes) {	// check if the key exist...
 			if(n1.getKey()==key) return true;
 		}
 		return false;
@@ -79,14 +79,12 @@ public class NodeData implements node_data {
 
 	@Override
 	public void addNi(node_data t) {
-		
-		NInodes.add(t);
-		
+		NInodes.add(t); // adds to list 
 	}
 
 	@Override
 	public void removeNode(node_data node) {
-		NInodes.remove(node);
+		NInodes.remove(node); // remove from the list
 	}
 
 	@Override
@@ -109,9 +107,15 @@ public class NodeData implements node_data {
 		this.tag=t;
 	}
 	
+	public static int getId() {
+		return id;
+	}
+	public static void setId(int id) {
+		NodeData.id = id;
+	}
+	
 	@Override
 	public String toString() {
 	return "" + this.getKey();
 	}
-	
 }

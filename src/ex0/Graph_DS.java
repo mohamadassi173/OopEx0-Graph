@@ -6,15 +6,15 @@ import java.util.HashMap;
 public class Graph_DS implements graph{
 
 	private HashMap<Integer, node_data> nodes;
-	private int MC=0;
-	private int edges_size = 0;	
+	private int MC;
+	private int edges_size;	
 	
-	
+	//// Basic constructor
 	public Graph_DS() {
 		nodes = new HashMap<Integer, node_data>();
 		edges_size=0;
 		MC=0;
-		NodeData.id=0;
+		NodeData.setId(0);
 	}
 	
 	@Override
@@ -35,9 +35,10 @@ public class Graph_DS implements graph{
 	@Override
 	public void addNode(node_data n) {
 		try {
-			if(nodes.get(n.getKey()) == null) // if node doesn't already exist.
+			if(nodes.get(n.getKey()) == null) { // if node doesn't already exist.
 				nodes.put(n.getKey(), n); // Add the node n.
 			MC++;
+			}
 		} catch (Exception e) {
 			throw new RuntimeException("ERROR: this node ia already added in the graph");
 		}
@@ -46,7 +47,6 @@ public class Graph_DS implements graph{
 	@Override
 	public void connect(int node1, int node2) {
 		try {
-		if(this.nodes.get(node1) != null && this.nodes.get(node2)!=null){
 			if(!hasEdge(node1, node2)) { // checking if node1 and node2 not connected
 					if(node1!=node2) {
 					// add Neighbours
@@ -59,8 +59,6 @@ public class Graph_DS implements graph{
 		 else {
 			return;
 		 }
-		}
-		else throw new RuntimeException("1 or 2 of the nodes doesnt't exist");
 	} catch (RuntimeException e) {
 		throw new RuntimeException("1 or 2 of the nodes doesnt't exist");
 		}

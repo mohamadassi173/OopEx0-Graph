@@ -88,8 +88,6 @@ public class Graph_Algo implements graph_algorithms{
 	
 	@Override
 	public boolean isConnected() {
-//		if(myGraph.nodeSize() == 0 || myGraph.nodeSize() == 1 ) return true;
-//		if (myGraph.nodeSize() > myGraph.edgeSize()+2) return false;
 		Collection<node_data>   n = myGraph.getV();
 		if(n.isEmpty()) return true;
 		bfs(n.iterator().next().getKey());
@@ -107,57 +105,36 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public List<node_data> shortestPath(int src, int dest) {
-		List<node_data> a =  new ArrayList<node_data>();
+		List<node_data> path =  new ArrayList<node_data>();
 		bfs(src);
-		//print();
-		if (dest >= dist.length || dist[dest]==NIL) return null;
+		if (dist[dest]==NIL) return null;
 		if (dest==src) {
-		a.add(new NodeData(src));
-		return a;
+		path.add(new NodeData(src));
+		return path;
 		}
 		else{
-			a.add(new NodeData(dest));
+			path.add(new NodeData(dest));
 			int t = pred[dest];
 			while (t != NIL){ 
-				a.add(new NodeData(t));
+				path.add(new NodeData(t));
 				t = pred[t];
 			}
 		}
-		return list_reverse(a);
+		return list_reverse(path);
 		}
 
 	
 	
     ////////////////////// Private Functions /////////////////////
 	
-	
-	private graph copy(graph g1) {
-		graph g = new Graph_DS();
-		// add g1 nodes to graph g
-		for (node_data n : g1.getV()) {
-			if (n != null) {
-//				NodeData n1 = new NodeData(n); // create new node for deep copy
-				g.addNode(n);
-			}
-		}
-		// add g1 edges to graph g
-		for(node_data n1 : g1.getV()){
-			for(node_data n2 : g1.getV()) {
-				if(n1.hasNi(n2.getKey()))
-				g.connect(n1.getKey(), n2.getKey());
-			}
-		}
-		return g;
-	}
 
-	public void bfs(int s) {
+	public void bfs(int src) {
 		for (int i = 0; i < size; i++) {
 			dist[i] = NIL;
 			pred[i] = NIL;
-//			if(myGraph.getNode(i) == null) color[i] = BLACK;
 			color[i] = WHITE;
 		}
-		source=s;
+		source=src;
 		dist[source]=0;
 		color[source]=GRAY;
 		q.add(source);

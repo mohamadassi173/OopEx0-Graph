@@ -3,7 +3,7 @@ package ex0;
  * This is a simple test class to test Ex0 functionality & performance.
  * Note: This is not a JUnit test - and should surely be, to be fixed in Ex1.
  *
- * output example (4 years old slow computer):
+ * output example (4 years ols slow computer):
  *
  * Running tests for Ex0 - this may take up to 10 seconds!
  *
@@ -127,7 +127,7 @@ public class Graph_Ex0_Test2 {
      */
     public static void test1() {
         graph g0 = graph_creator(1, 0, 1);
-//            System.out.println(g0);
+        //    System.out.println(g0);
         graph_algorithms ga0 = new Graph_Algo();
         ga0.init(g0);
         boolean b = ga0.isConnected();
@@ -145,6 +145,7 @@ public class Graph_Ex0_Test2 {
         boolean b = ga0.isConnected();
         test("test2() ", b, false);
         test("test2() ", b, false);
+
     }
     /**
      * graph with two nodes and a single edge - connected
@@ -173,7 +174,7 @@ public class Graph_Ex0_Test2 {
         g10.removeEdge(a2,a1);
         g10.removeNode(a2);
         g10.removeNode(a2);
-        System.out.println();
+     //   System.out.println();
         //    System.out.println(g10);
         int re = 9;
         test("test9(a) ", re, g10.nodeSize());
