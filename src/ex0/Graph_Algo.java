@@ -2,6 +2,7 @@ package ex0;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -72,10 +73,12 @@ public class Graph_Algo implements graph_algorithms{
 			}
 		}
 		// add g1 edges to graph g
+		Iterator<node_data> n2 = myGraph.getV().iterator();
 		for(node_data n1 : myGraph.getV()){
-			for(node_data n2 : myGraph.getV()) {
-				if(n1.hasNi(n2.getKey()))
-				g.connect(n1.getKey(), n2.getKey());
+			while(n2.hasNext()) {
+				node_data temp = n2.next();
+				if(n1.hasNi(temp.getKey()))
+					g.connect(n1.getKey(), temp.getKey());
 			}
 		}
 		return g;
