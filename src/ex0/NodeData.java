@@ -86,7 +86,9 @@ public class NodeData implements node_data {
 	public void removeNode(node_data node) {
 		NInodes.remove(node); // remove from the list
 	}
-
+  
+	
+	///// getters && setters 
 	@Override
 	public String getInfo() {
 		return info;
@@ -114,6 +116,7 @@ public class NodeData implements node_data {
 		NodeData.id = id;
 	}
 	
+	// to print the key of the node (maybe it need to be fixed later..)
 	@Override
 	public String toString() {
 	return "" + this.getKey();
