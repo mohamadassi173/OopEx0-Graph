@@ -91,7 +91,7 @@ public class Graph_Algo implements graph_algorithms{
 		bfs(n.iterator().next().getKey()); // do bfs algo to color all connected vertices 
 		for(node_data   n1 : myGraph.getV()) {
 			//return false  if the node not connected
-			if(color[n1.getKey()] != BLACK ) return false; 
+			if(n1.getTag() != BLACK ) return false; 
 		}
 		return true;
 	}
@@ -136,7 +136,8 @@ public class Graph_Algo implements graph_algorithms{
 		for (int i = 0; i < size; i++) {
 			dist[i] = NIL;
 			pred[i] = NIL;
-			color[i] = WHITE;
+			if(myGraph.getNode(i)!=null) myGraph.getNode(i).setTag(WHITE);
+//			color[i] = WHITE;
 		}
 		source=src;
 		dist[source]=0;
@@ -146,14 +147,14 @@ public class Graph_Algo implements graph_algorithms{
 		int u = q.poll();
 		if(myGraph.getV(u) != null && !myGraph.getV(u).isEmpty())
 		for(node_data n1 : myGraph.getV(u)) { // check every node with nieghbors
-			if(color[n1.getKey()] == WHITE) {
+			if(myGraph.getNode(n1.getKey()).getTag() == WHITE) {
 				dist[n1.getKey()] = dist[u]+1;
 				pred[n1.getKey()] = u;
-				color[n1.getKey()] = GRAY;
+				myGraph.getNode(n1.getKey()).setTag(GRAY);
 				q.add(n1.getKey());
 			}
 		}
-		color[u] = BLACK;	
+		myGraph.getNode(u).setTag(BLACK);
 		}
 	}
 	
