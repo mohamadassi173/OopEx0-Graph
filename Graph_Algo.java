@@ -17,10 +17,11 @@ public class Graph_Algo implements graph_algorithms{
 	
 	private graph myGraph;
 	private int size;
-	private Queue<Integer> q; // for bfs algo
-	private int dist[], pred[],color[]; // for bfs algo
-	private final int WHITE=1,GRAY=2,BLACK=3,NIL=-1; // for bfs algo
-	private int source; // for bfs algo
+	///// for BFS algo
+	private Queue<Integer> q;
+	private int dist[], pred[]; 
+	private final int WHITE=1,GRAY=2,BLACK=3,NIL=-1; 
+	private int source;
 	
 	/**
 	 * Basic constructor
@@ -57,7 +58,6 @@ public class Graph_Algo implements graph_algorithms{
 		q = new ArrayBlockingQueue<Integer>(size);
 		dist = new int[size];
 		pred = new int[size];
-		color = new int[size];
 		source = 0;
 	}
 
@@ -141,7 +141,7 @@ public class Graph_Algo implements graph_algorithms{
 		}
 		source=src;
 		dist[source]=0;
-		color[source]=GRAY;
+		myGraph.getNode(source).setTag(GRAY);
 		q.add(source);
 		while (!q.isEmpty()) { // check if we finished modifed all nieghbors..
 		int u = q.poll();
