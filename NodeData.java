@@ -8,9 +8,10 @@ public class NodeData implements node_data {
 	private Collection<node_data> NInodes;
 	private static int id=0;
 	private int key;
+	 // for algorithms
 	private String info = "";
-	private int tag; // for algorithms
-
+	private int tag, pred;
+	
 	
 	
 	//////////////  Constructors
@@ -19,9 +20,9 @@ public class NodeData implements node_data {
 	 * Basic Constructor
 	 */
 	public NodeData() {
+		this.key=id;
+		id++;
 		this.NInodes = new ArrayList<node_data>();
-		key=getId();
-		NodeData.setId(NodeData.getId() + 1);
 	}
 	/**
 	 * @param key - the Node number
@@ -108,17 +109,17 @@ public class NodeData implements node_data {
 	public void setTag(int t) {
 		this.tag=t;
 	}
-	
-	public static int getId() {
-		return id;
-	}
-	public static void setId(int id) {
-		NodeData.id = id;
-	}
+
 	
 	// to print the key of the node (maybe it need to be fixed later..)
 	@Override
 	public String toString() {
 	return "" + this.getKey();
+	}
+	public int getPred() {
+		return pred;
+	}
+	public void setPred(int pred) {
+		this.pred = pred;
 	}
 }

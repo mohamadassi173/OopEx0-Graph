@@ -14,7 +14,6 @@ public class Graph_DS implements graph{
 		nodes = new HashMap<Integer, node_data>();
 		edges_size=0;
 		MC=0;
-		NodeData.setId(0);
 	}
 	
 	@Override
@@ -28,7 +27,7 @@ public class Graph_DS implements graph{
 		if(!nodes.containsKey(node1) || !nodes.containsKey(node2)) // check if node1 or node2 exist in the graph
 			return false;
 		// return true if node1 and node2 are Neighbours
-		return nodes.get(node1).hasNi(node2) || nodes.get(node2).hasNi(node1);
+		return nodes.get(node1).hasNi(node2) && nodes.get(node2).hasNi(node1);
 	}
 	
 	
@@ -46,7 +45,7 @@ public class Graph_DS implements graph{
 
 	@Override
 	public void connect(int node1, int node2) {
-		try {
+	
 			if(!hasEdge(node1, node2)) { // checking if node1 and node2 not connected
 					if(node1!=node2) {
 					// add Neighbours
@@ -55,12 +54,6 @@ public class Graph_DS implements graph{
 					edges_size++; // increase edge size
 					MC++;
 					}
-		}
-		 else {
-			return;
-		 }
-	} catch (RuntimeException e) {
-		throw new RuntimeException("1 or 2 of the nodes doesnt't exist");
 		}
 	}
 	
