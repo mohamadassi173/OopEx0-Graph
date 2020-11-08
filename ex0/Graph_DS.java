@@ -18,7 +18,7 @@ public class Graph_DS implements graph{
 	
 	@Override
 	public node_data getNode(int key) {
-		if(!nodes.containsKey(key)) return null;
+		if(!nodes.containsKey(key)) return null; // useless
 		return nodes.get(key);
 	}
 
@@ -27,25 +27,19 @@ public class Graph_DS implements graph{
 		if(!nodes.containsKey(node1) || !nodes.containsKey(node2)) // check if node1 or node2 exist in the graph
 			return false;
 		// return true if node1 and node2 are Neighbours
-		return nodes.get(node1).hasNi(node2) && nodes.get(node2).hasNi(node1);
+		return nodes.get(node1).hasNi(node2);
 	}
-	
 	
 	@Override
 	public void addNode(node_data n) {
-		try {
-			if(nodes.get(n.getKey()) == null) { // if node doesn't already exist.
+			if(nodes.get(n.getKey()) == null) { // if node doesn't already exist. 
 				nodes.put(n.getKey(), n); // Add the node n.
 			MC++;
 			}
-		} catch (Exception e) {
-			throw new RuntimeException("ERROR: this node ia already added in the graph");
-		}
 	}
 
 	@Override
 	public void connect(int node1, int node2) {
-	
 			if(!hasEdge(node1, node2)) { // checking if node1 and node2 not connected
 					if(node1!=node2) {
 					// add Neighbours
@@ -75,9 +69,8 @@ public class Graph_DS implements graph{
 		if(nodes.containsKey(key)) n = nodes.get(key); // To return it after remove
 		else return n; // key is not exist in graph
 		try {
-
 			// remove all edges with the node we removed from the graph
-			Collection<node_data> connectedNodes = n.getNi(); // all jeran 
+			Collection<node_data> connectedNodes = n.getNi(); // all jeran(Neighbours)
 			if(connectedNodes!=null)
 			for(node_data r : connectedNodes) {
 				if(r!=null)
@@ -98,8 +91,7 @@ public class Graph_DS implements graph{
 	@Override
 	public void removeEdge(int node1, int node2) {
 		// check if node1 and node2 connected to decrease edge size
-		if(nodes.get(node1).hasNi(node2) 
-		|| nodes.get(node2).hasNi(node1)) edges_size--;
+		if(hasEdge(node1, node2)) edges_size--;
 		nodes.get(node1).removeNode(nodes.get(node2));
 		nodes.get(node2).removeNode(nodes.get(node1));
 		

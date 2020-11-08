@@ -1,16 +1,15 @@
 package ex0;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.LinkedList;
 
 public class NodeData implements node_data {
 	
 	private Collection<node_data> NInodes;
 	private static int id=0;
-	private int key;
 	 // for algorithms
 	private String info = "";
-	private int tag, pred;
+	private int key, tag, pred;
 	
 	
 	
@@ -22,13 +21,13 @@ public class NodeData implements node_data {
 	public NodeData() {
 		this.key=id;
 		id++;
-		this.NInodes = new ArrayList<node_data>();
+		this.NInodes = new LinkedList<node_data>();
 	}
 	/**
 	 * @param key - the Node number
 	 */
 	public NodeData(int key) {
-		this.NInodes = new ArrayList<node_data>();
+		this.NInodes = new LinkedList<node_data>();
 		this.key=key;
 	}
 
@@ -65,7 +64,7 @@ public class NodeData implements node_data {
 	@Override
 	public Collection<node_data> getNi() {
 		if(NInodes.isEmpty()) { // check if the list is empty
-			NInodes = new ArrayList<node_data>();
+			NInodes = new LinkedList<node_data>();
 		}
 		return NInodes;
 	}
@@ -116,6 +115,8 @@ public class NodeData implements node_data {
 	public String toString() {
 	return "" + this.getKey();
 	}
+	
+
 	public int getPred() {
 		return pred;
 	}

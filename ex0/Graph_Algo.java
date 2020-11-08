@@ -25,14 +25,14 @@ public class Graph_Algo implements graph_algorithms{
 	 * @param g0 - to g the graph
  	 */
 	public Graph_Algo(graph g0) {
-		myGraph = g0;
+		this.myGraph = g0;
 	}
 
 	/**
 	 * Basic constructor
 	 */
 	public Graph_Algo() {
-		myGraph = new Graph_DS();
+		this.myGraph = new Graph_DS();
 	}
 
 	@Override
@@ -42,7 +42,6 @@ public class Graph_Algo implements graph_algorithms{
 		Collection<node_data> temp_nodes = myGraph.getV();
 		if(temp_nodes.iterator().hasNext())
 		source = temp_nodes.iterator().next().getKey();
-
 		q = new PriorityQueue<Integer>();
 	}
 
@@ -70,9 +69,10 @@ public class Graph_Algo implements graph_algorithms{
 
 	@Override
 	public boolean isConnected() {
-		Collection<node_data>   n = myGraph.getV(); // return all vertices 
+		Collection<node_data>   n = myGraph.getV(); //  all vertices in the graph
 		if(n.isEmpty()) return true;
-		bfs(); // do bfs algo to color all connected vertices 
+		source = n.iterator().next().getKey(); // change the source to be the first node-key in the graph to avoid null pointer..
+		bfs(); // do bfs algo to check if visited all connected vertices 
 		for(node_data   n1 : myGraph.getV()) {
 			//return false  if the node not connected
 			if(n1.getInfo() != VISITED ) return false; 
@@ -101,14 +101,14 @@ public class Graph_Algo implements graph_algorithms{
 		else{ 
 			path.add(new NodeData(dest)); // adds the dest node
 			int t= ((NodeData) myGraph.getNode(dest)).getPred();
-			while (t != START){ 
+			while (t != START){  // adds from the last node in the path
 				path.add(new NodeData(t));
 				t = ((NodeData) myGraph.getNode(t)).getPred();;
 			}
 		}
 		return list_reverse(path); // reverse the list then return it
 		}
-
+	
 	
 	
     ////////////////////// Private Functions /////////////////////

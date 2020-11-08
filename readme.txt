@@ -1,17 +1,35 @@
 First assignment in object oriented programming course
-
-
 This project is about building an undirected graph to operate some of the algorithms (check if the graph is connected, return the shortest path and shortest path dest).
 
-Data structure - Hashmap:
-the key of hashmap the id of the vertex.
+classes list -
+node_data :interface that represent the set of operations applicable on a  node (vertex) in an undirectional unweighted graph.
+NodeData : class that implements "node_data" interface.
+graph: interface that represent an undirectional unweighted graph.
+Graph_DS :class that implements "graph" interface.
+graph_algorithms:interface represents Graph Theory algorithms.
+Graph_Algo: class that implements "graph_algorithms" interface.
+
+
+Data structures - 
+Hashmap<Integer,node_data>:
+the key of hashmap the id of the node_data
 the value of hashmap is node_data, each of node_data has neighbours collection.
-
-Algorithms:
-is an algorithm for traversing or searching tree or graph data structures. It starts at the tree root (or some arbitrary node of a graph, sometimes referred to as a 'search key'[1]), and explores all of the neighbour nodes at the present depth before moving on to the nodes at the next depth level complexity: O(V+E)
-We checked if the graph is connected by doing bfs on the arbitrary vertex and check if the colour of all vertices is black, If true That's mean that can I traverse from every arbitrary vertex to other vertices therefore the graph is connected.
-BFS also returns distance array from certain vertices  to other vertices that helped me to return the shortest path between two vertices.
+neighbour collection represent in node_data by Collection<node_data>
 
 
-assignment github: 
+Algorithms -
+BFS is a traversing algorithm where you should start traversing from a selected node (source or starting node) and traverse the graph layerwise thus exploring the neighbour nodes.
+and must then move towards the next-level neighbour nodes.
+
+isConnected function: by doing BFS on any vertex in graph,if all vertices is visited that mean the graph is connected if one of vertices not visited the graph is not connected.
+
+shortestpath function: doing bfs on src vertex,then we have a distance array of src vertex to all vertices in graph, 
+for printing the the path we use the pred array that present immediate predecessor of the each vertex.
+
+shortestpathdest function: use shortestpath function to print the path and we simply return the size of the path minus 1(because number of edges is equal to number of vertices-1)
+
+
+
+github link:
 https://github.com/mohamadassi173/OopEx1-Graph.git
+
